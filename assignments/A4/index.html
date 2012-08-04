@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<!-- 
+Instagram Fiddle Web architecture and information management 
+Teachers: Dhaval Mujumdar, Rami Taibah 
+Assignment 4 by Karan Setiya 
+UC Berkeley Summer session 2012 
+
+**Valid html5
+
+-->
+<html>
+    
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Instagram Fiddle Assignment 4 Karan Setiya</title>
+        <script type="text/javascript"
+        src="http://code.jquery.com/jquery-latest.min.js">
+            
+        </script>
+        <script type="text/javascript" src="js/jquery.lightbox-0.5.js">
+            
+        </script>
+        <link rel="stylesheet" type="text/css" href="css/jquery.lightbox-0.5.css"
+        media="screen">
+        <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+        <script type="text/javascript">
+            $(document).ready(function () {
+
+                $.mynamespace = {
+                    myQuery: "olympics" //set the global query variable  to olympics for tweets retrieval
+                };
+                getInstagram("olympics");
+
+                $('#query').bind('keypress', function (e) {
+                    if (e.keyCode == 13) {
+                        var query = $("#query").val();
+                        getInstagram(query); //keypress event listener so that search is fired when 'enter' is pressed
+                    }
+                });
+
+
+            });
+
+            function getInstagram(query) {
+                $.mynamespace = {
+                    myQuery: query
+                };
+                $("#instagram").empty();
+                $.ajax({
+                    type: "GET",
+                    dataType: "jsonp",
+                    cache: false,
+                    url: "https://api.instagram.com/v1/tags/" + query + "/media/recent?client_id=62b5810ccf6e4b2c9c9665bf5c7ed960&access_token=8465691.62b5810.767b552afd3d40f993846ac0b58b05f5",
+                    success: function (data) {
+
+                        for (var i = 0; i < data.data.length; i++) {
+
+                            if (data.data[i].caption != null) {
+                                var text = data.data[i].caption.text;
+                                var username = data.data[i].caption.from.username
+                            };
+                            if (data.data[i].images != null) {
+                                var stdres = data.data[i].images.standard_resolution.url;
+                                var lores = data.data[i].images.low_resolution.url
+                            };
+                            if (data.data[i].likes != null) {
+                                var likes = data.data[i].likes.count
+                            };
+                            $("#instagram").append("<div class='instagram-placeholder'><a class='instalink' target='_blank' href='" + stdres + "' title='" + text + "'><img class='instagram-image' src='" + lores + "' /><\/a><div class='imgdata'>" + username + " <img src='images/heart.png'/> " + likes + "<\/div><\/div>");
+                        }
+                    }
+
+                }).done(function () {
+
+                    initfx();
+                }
+
+                );
+            }
+
+            function getInstagramOlymp() {
+
+                $("#instagram").empty();
+                $.mynamespace = {
+                    myQuery: "olympicvillage" //set the global query variable  to olympicvillage for tweets retrieval
+                };
+                $.ajax({
+                    type: "GET",
+                    dataType: "jsonp",
+                    cache: false,
+                    url: "https://api.instagram.com/v1/media/search?lat=51.543270&lng=-0.001870&distance=1000?client_id=62b5810ccf6e4b2c9c9665bf5c7ed960&access_token=8465691.62b5810.767b552afd3d40f993846ac0b58b05f5",
+                    success: function (data) {
+
+                        for (var i = 0; i < data.data.length; i++) {
+
+                            if (data.data[i].caption != null) {
+                                var text = data.data[i].caption.text;
+                                var username = data.data[i].caption.from.username
+                            };
+                            if (data.data[i].images != null) {
+                                var stdres = data.data[i].images.standard_resolution.url;
+                                var lores = data.data[i].images.low_resolution.url
+                            };
+                            if (data.data[i].likes != null) {
+                                var likes = data.data[i].likes.count
+                            };
+                            $("#instagram").append("<div class='instagram-placeholder'><a class='instalink' target='_blank' href='" + stdres + "' title='" + text + "'><img class='instagram-image' src='" + lores + "' /><\/a><div class='imgdata'>" + username + " <img src='images/heart.png'/> " + likes + "<\/div><\/div>");
+                        }
+                    }
+                }
+
+                ).done(function () {
+                    initfx();
+
+                }
+
+                );
+            }
+
+            function getloctagusa() { //Bonus* here the recent images around the london olympic village geolocation are retrieved, then the response is filtered for the tag 'TeamUSA'. This way you get the instagram posts around the olympic village AND with the tag 'TeamUSA'. This query is highly constraining however. It usually renders 0 results because it has to be in the location AND be a recent post AND have the tag #teamusa. If you replace the tag with e.g. 'olympics', it renders results more often.
+
+                $("#instagram").empty();
+
+                $.mynamespace = {
+                    myQuery: "teamusa" //set the query to teamusa for tweets retrieval
+                };
+
+                $.ajax({
+                    type: "GET",
+                    dataType: "jsonp",
+                    cache: false,
+                    url: "https://api.instagram.com/v1/media/search?lat=51.543270&lng=-0.001870&distance=5000?client_id=62b5810ccf6e4b2c9c9665bf5c7ed960&access_token=8465691.62b5810.767b552afd3d40f993846ac0b58b05f5",
+                    success: function (data) {
+
+                        for (var i = 0; i < data.data.length; i++) {
+                            for (var j = 0; j < data.data[i].tags.length; j++) {
+
+                                if (data.data[i].tags[j] == "TeamUSA") {
+
+                                    if (data.data[i].caption != null) {
+                                        var text = data.data[i].caption.text;
+                                        var username = data.data[i].caption.from.username
+                                    };
+                                    if (data.data[i].images != null) {
+                                        var stdres = data.data[i].images.standard_resolution.url;
+                                        var lores = data.data[i].images.low_resolution.url
+                                    };
+                                    if (data.data[i].likes != null) {
+                                        var likes = data.data[i].likes.count
+                                    };
+                                    $("#instagram").append("<div class='instagram-placeholder'><a class='instalink' target='_blank' href='" + stdres + "' title='" + text + "'><img class='instagram-image' src='" + lores + "' /><\/a><div class='imgdata'>" + username + " <img src='http://files.softicons.com/download/toolbar-icons/white-wireframe-toolbar-icons-by-gentleface/png/16/heart.png'/> " + likes + "<\/div> <\/div>");
+                                }
+                            }
+                        }
+                    }
+                }
+
+                ).done(function () {
+                    initfx();
+
+
+                }
+
+                );
+            }
+
+            function initfx() {
+                $('.instalink').lightBox({
+                    fixedNavigation: true
+                });
+                $(".instagram-image").css("opacity", "0.5");
+                $(".instagram-placeholder").hover(function () {
+
+                    $(this).find("div").fadeTo(500, "1");
+                    $(this).find("img").fadeTo(500, "1");
+
+                });
+                $(".instagram-placeholder").mouseout(function () {
+                    $(this).find("div").fadeTo(500, "0");
+                    $(this).find("img").fadeTo(500, "0.5");
+
+                });
+
+
+            }
+        </script>
+    </head>
+    
+    <body>
+        <div id="container">
+            <h1>
+                <a href="#"><img src="images/logo.png" alt="instagram logo"> Fiddle</a>
+            </h1>
+            <div id="hideshow" title="hide/show quicksearch">#
+                <img src="images/london.png" alt="olympic logo london">
+            </div>
+            <div id="tags">
+                <h2>Quicksearch. Olympic Tags:</h2>
+                <ul>
+                    <li>
+                        <a class="button-link" href="#" id="boxing" ># Olympic Boxing</a>
+                    </li>
+                    <li>
+                        <a class="button-link" href="#" id="soccer" ># Olympic Soccer</a>
+                    </li>
+                    <li>
+                        <a class="button-link" href="#" id="basketball" ># Olympic
+            Basketball</a>
+                    </li>
+                    <li>
+                        <a class="button-link" href="#" id="allolymp"># Olympic Village</a>
+                    </li>
+                    <li>
+                        <a class="button-link" href="#" id="loctagusa" ># TeamUSA at Olympic
+            Village</a>
+                    </li>
+                </ul>
+                <img src="images/twitter.png" alt="twitter logo">
+                <button id='tweet-btn'>Retrieve Tweets</button>
+                <div id='tweet-show'></div>
+            </div>
+            <form id="searchBox" name="searchBox">
+                <input tabindex="1" type="text" id="query" name="query" value="" placeholder="search (default 'olympics')">
+                <span id="submit">
+                    <img src="images/toolbar_find.png" alt="search icon">
+                </span>
+                <br>
+                <input tabindex="2" type="text" id="hidden" value="">
+                <br>
+            </form>
+            <div id="instagram"></div>
+            <script type="text/javascript">
+                $("#tweet-btn").live("click", function () { /* This makes the tweets for the current query or hashtag to be fetched and displayed in the twitter 'widget' bottom-right of the page (when retrieve tweets is clicked)*/
+                    $("#tweet-show").empty();
+                    $.ajax({
+                        url: "http://search.twitter.com/search.json?q=" + $.mynamespace.myQuery,
+                        dataType: "jsonp",
+                        success: function (data) {
+                            $.each(data.results, function (item) {
+                                $("#tweet-show").append("<div class='tweet'><div class='profilepic'><a href='https://www.twitter.com/" + data.results[item].from_user + "' target='_blank'><img src='" + data.results[item].profile_image_url + "' alt='profilepic'/><\/a><\/div><div class='tweettext'>" + data.results[item].text + "<\/div><\/div>");
+                            });
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        },
+                    });
+                });
+
+
+
+                $('#hideshow').click(function () {
+                    $('#tags').slideToggle('slow');
+                });
+
+                $("#boxing").click(function () {
+                    getInstagram("olympicboxing");
+                });
+
+                $("#soccer").click(function () {
+                    getInstagram("olympicsoccer");
+                });
+
+                $("#basketball").click(function () {
+                    getInstagram("olympicbasketball");
+                });
+
+                $("#allolymp").click(function () {
+                    getInstagramOlymp();
+                });
+
+                $("#loctagusa").click(function () {
+                    getloctagusa();
+                });
+
+
+
+
+                $("#submit").click(function () {
+
+                    var query = $("#query").val();
+                    getInstagram(query);
+
+
+                });
+            </script>
+        </div>
+    </body>
+
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>jQuery Exercises Assig 3 Karan Setiya</title>
+<script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+ <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+ <script type='text/javascript' src="js/softscroll.js">
+</script>
+
+  <link href="jquery.css" rel="stylesheet" type="text/css" />
+  
+ 
+  <script type="text/javascript"> 
+  
+   $(document).ready(function(){
+   $("#alertButton").click(function(event){
+     alert("Button was clicked");
+   });
+ });
+  /* a script that gives an alert when the "Click me" button is clicked */
+  </script>
+<script type="text/javascript">
+
+$(document).ready(function() {
+    
+	
+$('#hide').click(function() {
+  $('#hidebox').hide('slow', function() {
+  });
+});
+
+$('#show').click(function() {
+  $('#hidebox').show('slow', function() {
+  });
+});
+});
+//  a script that hides the RED box when "hide" is clicked, and shows it when "show" is clicked
+</script>
+
+
+<script type="text/javascript"> 
+  $(document).ready(function() {
+    
+$("#clickslide p").click(function () {
+      $("#slider").show("slide", { direction: "down" }, 1000);
+});
+
+  });
+  
+// a script that slides the ORANGE/YELLOW box when "Click to slide box" is clicked
+</script>
+
+
+<script type="text/javascript">
+ $(document).ready(function() {
+    
+$("#fader").click(function () {
+	  $("#fader").empty();
+	  $("#fader").append("Nooooo!");
+      $("#fader").fadeOut(3000);
+	  $("#showBrown").css("visibility", "visible");
+	  $("#showBrown").css("height", "auto");
+});
+
+$("#showBrown").click(function () {
+       $("#fader").empty();
+       $("#fader").append("Ah, its good to be back.");
+	   $("#fader").fadeIn(1500);
+	   $("#showBrown").css("visibility", "hidden");
+	   $("#showBrown").css("height", "0px");
+});
+  });
+  
+  // a script that fades the MAROON box when the BOX is clicked, a button to bring back the box then appears
+</script>
+
+
+<script type="text/javascript"> 
+  $(document).ready(function() {
+      
+$("#resizeOn").click(function () {
+    $("#animator").resizable();
+  });
+    });
+ 
+//  a script that animates the BEIGE box to 300X300 PX then to 100X100px when the button "Click me, I'm a button" is clicked
+</script> 
+
+ <script>
+ 
+  $(document).ready(function() {
+    
+
+      $("#draggable").draggable();
+	  
+
+});
+
+//  a script that makes the Berkeley School of Information logo/image draggable. So that you can drag the logo all around the page
+  </script>
+
+<script>
+ $(document).ready(function() {
+$("li").hover(
+  function () {
+    $(this).append($("<span> ***</span>"));
+  }, 
+  function () {
+    $(this).find("span:last").remove();
+  }
+);
+});
+
+
+//li with fade class
+$("li.fade").hover(function(){$(this).fadeOut(100);$(this).fadeIn(500);});
+
+
+// write a script here so that when you hover on each element (milk, bread, chips, socks) three red asterisks appear beside the element and then disappears when you remove the cursor
+
+
+</script>
+
+
+
+</head>
+
+<body> 
+<a id="top"></a>
+    
+<section>
+ <div id="backToTop">
+      <a href="#top">&uarr; Top</a>
+    </div>
+<div id="container">
+<h1><a href="http://jquery.com/" target="_blank">JQuery</a> Demos | <span> <a href="mailto:karansetiya@hotmail.com">Karan Setiya</a> | Web Architecture assignment 3</span> </h1>
+<div id="alertdemo">
+<h2> Alert demo </h2>
+<button class="button-link"  id="alertButton">Click Me</button>
+
+
+</div>
+
+<div id="visibilityDemo">
+ <h2>Visibility effect </h2>
+<div class="button-link" id="hide"> Hide </div>
+
+<div class="button-link" id="show"> Show </div>
+
+<div id="hidebox">
+	<p>I'm a ghost.</p>
+  </div>
+   
+   </div>
+   
+   <div id="slidingDemo">
+  <h2> Sliding effect</h2>
+<div id="clickslide">
+	<p class="button-link"> Click to slide box </p>
+</div>
+
+<div id="slider">
+	<p> Oh hey, I slid. </p>
+</div>
+</div>
+
+<div id= "fadeDemo">
+<h2> Fade effect</h2>
+<p>This box will fade into oblivion if you click on it...</p>
+<button class="button-link"  id="showBrown"> Bring back brown box</button>
+<div id="fader">
+</div>
+</div>
+
+<br /><br />
+
+<div id="resizeDemo">
+<h2> Resize element effect</h2>
+<button class="button-link"  id="resizeOn">Resize this green box!</button>
+
+<div id="animator">
+</div>
+</div>
+
+<div id="dragDemo">
+<h2> Drag element effect</h2>
+<p> Drag and drop this image anywhere on the page </p>
+<div id="draggable">
+<img src="images/logo.jpeg" alt="Berkeley School of Information logo"/> 
+</div>
+
+</div>
+
+<div id="hoverDemo">
+
+<h2> Hover effect </h2>
+<ul>
+    <li>Milk</li>
+    <li>Bread</li>
+    <li>Chips</li>
+    <li>Socks</li>
+  </ul>
+</div>
+
+</div>
+</section>
+ 
+
+
+</body>
+</html>
+

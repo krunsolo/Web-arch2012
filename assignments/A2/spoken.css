@@ -1,0 +1,31 @@
+	 /* De antwoorden van de lab vragen zijn in het nederlands, en de  Opera text-to-speech engine ondersteunt alleen engels. We hebben de lab vragen in <h3> elementen staan, daarom passen we de css toe op deze elementen. Zoals in de assignment aangegeven moesten we dus de nederlandse tekst vermijden in de css. We hebben er dan voor gekozen om de engelse tekst/lab vragen (h3 tag) in een vrouwelijke stem te doen, en de rest in een mannelijke stem (body tag).   */
+	 
+	body{
+		voice-family:male;
+		richness:80;
+		speech-rate:slow;
+		pause:1;
+	}
+	
+	h3{
+		speak: normal;
+		voice-family: female;
+		stress: 20;
+		richness: 90;
+		speech-rate:medium;
+		cue-before: url('none');
+		pause: 1;	
+	}
+	
+	#names{
+		-xv-interpret-as:name; /*css3 tag to hint that the element's content is a proper name of a person, company etc.*/
+	}
+	
+	a{
+		-xv-interpret-as:net; /*css3 tag to hint that the element's content is a URI such as an email address or an http URI. */
+	}
+	
+	 
+ 
+	
+		

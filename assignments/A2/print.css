@@ -1,0 +1,39 @@
+	aside, img
+	{
+		display: none;
+		visibility:hidden;
+		height:0;
+		width:0;
+		color:white;
+	}
+	
+	
+	a:link, a:visited
+	{
+		color: #000;
+		text-decoration:none;
+	}
+	
+	h1,h2,h3 {
+		font-family:Georgia, "Times New Roman", Times, serif; 
+		font-weight:700; 
+		font-size:16px; 
+	}
+	
+	h2{
+		font-size:20px; 
+		page-break-before:always; /*this causes each section to start at a new page. I realize that this does not prioritize saving paper space, however I find this format much easier to read, to save paper space you could choose to remove this line:'page-break-before:always' */
+		 
+	}
+	
+	h3, h2{
+		page-break-after:avoid
+		
+	}
+	
+
+	p {line-height:1.4em; margin: 10px 0;}
+
+	#backToTop{visibility:hidden; display:none}
+
+ 

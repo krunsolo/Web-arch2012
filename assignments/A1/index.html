@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+  <head><!-- The head element contains meta data about the content type and character set (encoding UTF-8) and the page title-->
+     
+    <meta http-equiv="Content-type" content="text/html; charset=UTF-8">
+    <title>
+      Web Architecture and Information Management Assignment 1 Karan Setiya
+    </title>
+    
+  </head>
+  <body>
+    <div id="container"> <!-- This div wraps the entire body in a container. This will be used for styling purposes-->
+      <h1>
+        Assignment 1
+      </h1>
+      <h2>
+        <a href="mailto:karansetiya@people.ischool.berkeley.edu">Karan Setiya</a> <!-- An email link to my ischool address-->
+      </h2>
+      <div id="main"> <!-- Here the main content begins-->
+	  <article class="art"> <!-- Here the main discussion or so called article begins -->
+      
+      <h3> Web Standards </h3>
+        <p>
+		There are various reasons as to why the use of web standards are good for different stakeholders. Let us take a look at a few:
+		</p>
+		 <details> <!-- The <details> tag specifies additional details that the user can view or hide on demand. -->
+		<summary><strong><abbr  title="Search Engine Optimization"> SEO</abbr></strong></summary> 
+		<p>One of the primary reasons is <strong><abbr  title="Search Engine Optimization">SEO</abbr></strong>
+		Correct and semantic use of(X)HTML. By using CSS to style your document, you are able to separate structure from presentation. A machine, in this case the search engine, can match semantic html tags such as &lt;title&gt; to return more effective search results. This way the search engine does not have to &quot;read&quot; through the entire content to find keywords, it can simply return the parts of the document that best describe it which is usually the title.
+        </p>
+        <figure> <img src="images/google.jpg" alt="Google image SEO"/> </figure> <!-- Defined the figure element to depict an image -->
+		 </details>
+         
+         <details>
+         <summary> <strong>Accessibility</strong></summary>
+         <p> As Tim Berners-Lee has said, &quot;the power of the Web is in its universality. Access by everyone regardless of disability is an essential aspect.&quot; Meaningful(X)HTML structure makes for a good start in accessibility. This can be done by use of CSS classes/ids and the new semantic HTML5 elements.</p>
+          <figure> <img src="images/access.png" alt="Learn to love accessibility"/> </figure>
+         </details>
+         
+         <details>
+         <summary><strong> Stability</strong></summary>
+        <p> Web developers have to worry about forward and backward compatibility. Web standards offer a set of rules that every Web developer can follow, understand, and become familiar with: when one developer designs a site to the standards, another will be able to pick up where the former left off.
+         </p>
+         
+         <figure> <img src="images/stable.jpg" alt="Stability metaphor"/> </figure>
+         </details>
+		
+        <p> <em>An <strong>important standard </strong>is the use of <strong>alt attributes </strong>for images, this is very important for accessibility reasons. It primarily affects disabled users. The alt attribute should provide a description of the respective image so that when the image is broken, not viewable by the user or a textual browser is used instead of a graphical browser; there is still some information retained about the image. </em></p>
+        
+        <h3> Assignment discussion </h3>
+  		<ul>
+        <li> <strong>Errors </strong> <br />
+        <span> The only warning that I could not resolve is the <em>&quot;The details element is not supported properly by browsers yet. It would probably be better to wait for implementations. [HTML5] &quot; </em>. </span>
+        </li>
+        
+       
+        
+        <li> <strong>Choice of doctype</strong><br /> 
+        <span> For this assignment I chose the doctype HTML5 since we were required to use at least a few HTML5 elements in the assignment AND the document has to validate through the <abbr title="World Wide Web Consortium">W3C parser</abbr>. It can only validate if the doctype corresponds to the used HTML version. Thus it made sense to use HTML5. Also, I like the new elements in HTML5, it makes many things possible in a much more easy way. It is the future of the Web and No More Flash! : ) A nice article which is published on Tympanus.net/codrops about why to use HTML5 can be found <a href="http://tympanus.net/codrops/2011/11/24/top-10-reasons-to-use-html5-right-now/" target="_blank">here</a></span></li>
+        
+        
+        </ul>
+      
+        <p> </p> <!-- Since no css is used yet, I create some spacing using an empty <p> element -->        
+        
+           <table>
+          <caption>
+          <strong>	HTML Short History Lesson | <a href="http://www.utoronto.ca/webdocs/htmldocs/NewHTML/html3.html" target="_blank"> source </a></strong>
+          </caption>
+          <tbody>
+            <tr>
+              <th>
+               HTML 3
+              </th>
+              <td>
+               (late 1995) was an ambitious effort on the part of Dave Raggett to upgrade the features and utility of HTML. However, it was never completed or implemented, although many features were integrated in the next "official" version of HTML, known as HTML 3.2.
+              </td>
+            </tr>
+            <tr>
+              <th>
+               HTML 3.2
+              </th>
+              <td>
+              was the next official version, integrating support for TABLES, image, heading and other element ALIGN attributes, and a few other finicky details. HTML 3.2 is the current "universal" dialect -- essentially all browsers understand HTML 3.2. IT was, however, missing some of the Netscape/Microsoft extensions, such as FRAMEs, EMBED and APPLET. Support for these (after a fashion) came in HTML 4.0
+              </td>
+            </tr>
+              <tr>
+              <th>
+              HTML 4.01
+              </th>
+              <td>
+            is the current official standard. It includes support for most of the proprietary extensions, plus support for extra features (Internationalized documents, support for Cascading Style Sheets, extra TABLE, FORM, and JavaScript enhancements), that are not universally supported. Some of these enhancements are not discussed in these online notes. They are discussed in detail in The HTML 4.0 Sourcebook, available in most bookstores.
+              </td>
+            </tr>
+              <tr>
+              <th>
+              HTML 5
+              </th>
+              <td>
+           Following its immediate predecessors HTML 4.01 and XHTML 1.1, HTML5 is a response to the observation that the HTML and XHTML in common use on the World Wide Web are a mixture of features introduced by various specifications, along with those introduced by software products such as web browsers, those established by common practice, and the many syntax errors in existing web documents. It is also an attempt to define a single markup language that can be written in either HTML or XHTML syntax. 
+              </td>
+            </tr>
+            
+          </tbody>
+        </table>
+        
+          <div>
+       <p> <strong> Cool little walkthrough on HTML5 in the video below: </strong> </p>
+       
+       <video width="600" height="400" controls>
+		<source src="videos/HTML5.mp4" type="video/mp4" /> 
+          Your browser does not support the video tag.
+        </video>
+        </div>
+        
+        
+        </article>
+      </div>
+    </div>
+    <div id="footer"></div> <!-- Will be used for footer content -->
+  </body>
+</html>
