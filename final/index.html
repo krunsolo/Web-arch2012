@@ -1,279 +1,283 @@
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en">
-  <!--<![endif]-->
-  <head>
-    <meta charset="utf-8"><!-- Set the viewport width to device width for mobile -->
-    <meta name="viewport" content="width=device-width">
-    <title>
-      Mashup Web arch
-    </title><!-- Included CSS Files (Uncompressed) -->
-    <!--
-  <link rel="stylesheet" href="stylesheets/foundation.css">
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/
+-->
+<!--[if lt IE 7]>
+    <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en">
+    <![endif]-->
+    <!--[if IE 7]>
+        <html class="no-js lt-ie9 lt-ie8" lang="en">
+        <![endif]-->
+        <!--[if IE 8]>
+            <html class="no-js lt-ie9" lang="en">
+            <![endif]-->
+            <!--[if gt IE 8]>
+                <!-->
+                <html class="no-js" lang="en">
+                <!--<![endif]-->
+                
+                <head>
+                    <meta charset="utf-8">
+                    <!-- Set the viewport width to device width for mobile -->
+                    <meta name="viewport" content="width=device-width">
+                    <title>Instagram Fiddle 2.0 i153 Final Assignment</title>
+                    <!-- Included CSS Files
+                    (Uncompressed) -->
+                    <!-- <link rel="stylesheet" href="stylesheets/foundation.css">
   -->
-    <!-- Included CSS Files (Compressed) -->
-    <link rel="stylesheet" href="stylesheets/foundation.min.css" type="text/css">
-    <link rel="stylesheet" href="colorbox.css" type="text/css">
-    <link rel="stylesheet" href="stylesheets/app.css" type="text/css">
-    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
-    <script src="javascripts/modernizr.foundation.js" type="text/javascript">
-</script>
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
-</script>
-    <script src="colorbox/jquery.colorbox.js" type="text/javascript">
-</script>
-    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false">
-</script><!-- IE Fix for HTML5 Tags -->
-    <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-    <!-- GMAPS SCRIPT -->
-
-    <script type="text/javascript">
-     
-         function getTweets(query){
+                    <!-- Included CSS Files (Compressed) -->
+                    <link rel="stylesheet" href="stylesheets/foundation.min.css" type="text/css">
+                    <link rel="stylesheet" href="colorbox.css" type="text/css">
+                    <link rel="stylesheet" href="stylesheets/app.css" type="text/css">
+                    <link rel="stylesheet" type="text/css" href="style.css" media="screen">
+                    <script src="javascripts/modernizr.foundation.js" type="text/javascript">
                         
-                        /* This makes the tweets for the current query or hashtag to be fetched and displayed in the twitter 'widget' bottom-right of the page (when retrieve tweets is clicked)*/
-                    $("#tweet-show").empty();
-                                        $("#hash").empty();
-                                        $("#hash").append("#"+query);
-                    $.ajax({
-                        url: "http://search.twitter.com/search.json?q=" + query,
-                        dataType: "jsonp",
-                        success: function (data) {
-                            $.each(data.results, function (item) {
-                                $("#tweet-show").append("<div class='tweet'><div class='profilepic'><a href='https://www.twitter.com/" + data.results[item].from_user + "' target='_blank'><img src='" + data.results[item].profile_image_url + "' alt='profilepic'/><\/a><\/div><div class='tweettext'>" + data.results[item].text + "<\/div><\/div>");
+                    </script>
+                    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js">
+                        
+                    </script>
+                    <script src="colorbox/jquery.colorbox.js" type="text/javascript">
+                        
+                    </script>
+                    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false">
+                        
+                    </script>
+                    <!-- IE Fix for HTML5 Tags -->
+                    <!--[if lt IE 9]>
+                        <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+                    <![endif]-->
+                    <!-- GMAPS SCRIPT -->
+                    <script type="text/javascript">
+                        function getTweets(query) {
+
+                            /* This makes the tweets for the current query or hashtag to be fetched and displayed in the twitter 'widget' bottom-right of the page (when retrieve tweets is clicked)*/
+                            $("#tweet-show").empty();
+                            $("#hash").empty();
+                            $("#hash").append("#" + query);
+                            $.ajax({
+                                url: "http://search.twitter.com/search.json?q=" + query,
+                                dataType: "jsonp",
+                                success: function (data) {
+                                    $.each(data.results, function (item) {
+                                        $("#tweet-show").append("<div class='tweet'><div class='profilepic'><a href='https://www.twitter.com/" + data.results[item].from_user + "' target='_blank'><img src='" + data.results[item].profile_image_url + "' alt='profilepic'/><\/a><\/div><div class='tweettext'>" + data.results[item].text + "<\/div><\/div>");
+                                    });
+                                },
+                                error: function (err) {
+                                    console.log(err);
+                                },
                             });
-                        },
-                        error: function (err) {
-                            console.log(err);
-                        },
-                    });
-                        
-                        
+
+
                         }
-                        
-                
-                                
-                        
-            $(document).ready(function () {
-                                
-                                
-                                
-                              $.mynamespace = {
-                    myQuery: "olympics", //set the global query variable  to olympics for tweets retrieval
-                                         url:null
-                                        
-                };
-                                
-                                
-                getInstagram($.mynamespace.myQuery);
-                                getTweets($.mynamespace.myQuery);
-                                dropMarker(51.553632, -0.072678);
-                                
-                $('#query').bind('keypress', function (e) {
-                    if (e.keyCode == 13) {
-                        var query = $("#query").val();
-                        getInstagram(query); //keypress event listener so that search is fired when 'enter' is pressed
-                                                getTweets(query);
-                    }
-                });
 
 
-            });
-                        
-                        function navHandler(){
-                         $.mynamespace.url = $("#cboxLoadedContent").find("img").attr("src");
-                //      alert($("#cboxLoadedContent").find("img").attr("src"));
-                         var toReplace = '_7';
-                        
-                        var newUrl = $.mynamespace.url.replace(toReplace,'_6'); 
-                        var x = $("img[src$='"+newUrl+"']");
-                         
-                        getTweets($(x).parent().parent().find(".imgdata").find("span").text());
-                        var lat = parseFloat($(x).parent().parent().find(".lat").text());
-                        var longi = parseFloat($(x).parent().parent().find(".long").text())
-                                         dropMarker(lat, longi);
-                         }
 
-            function getInstagram(query) {
-                        
-                $.mynamespace = {
-                    myQuery: query,
-                                         url:null
-                };
-                $("#instagram").empty();
-                $.ajax({
-                    type: "GET",
-                    dataType: "jsonp",
-                    cache: false,
-                    url: "https://api.instagram.com/v1/tags/" + query + "/media/recent?client_id=62b5810ccf6e4b2c9c9665bf5c7ed960&access_token=8465691.62b5810.767b552afd3d40f993846ac0b58b05f5",
-                    success: function (data) {
-                                                if(data.data.length==0){
-                                                $("#results").empty();
-                                                $("#results").append("Oops! There were no recent results for '"+query+"', please try a different query");
-                                                }else if (data.data.length>0){$("#results").empty(); $("#results").append("Recent instagram images about '"+query+"'")}
-                        for (var i = 0; i < data.data.length; i++) {
-                                             if (data.data[i].caption != null) {
-                                var text = data.data[i].caption.text;
-                                var username = data.data[i].caption.from.username
+
+                        $(document).ready(function () {
+
+
+
+                            $.mynamespace = {
+                                myQuery: "olympics", //set the global query variable  to olympics for tweets retrieval
+                                url: null
+
                             };
-                            if (data.data[i].images != null) {
-                                var stdres = data.data[i].images.standard_resolution.url;
-                                var lores = data.data[i].images.low_resolution.url
-                            };
-                            if (data.data[i].likes != null) {
-                                var likes = data.data[i].likes.count
-                            };
-                                                        if (data.data[i].location != null && data.data[i].location != "undefined") {
-                                                                var lat = data.data[i].location.latitude;
-                                                                var longi = data.data[i].location.longitude;
-                                                        //      var location = lat+", "+longi;
-                                                                };
-                            $("#instagram").append("<div class='instagram-placeholder'><a class='instalink' target='_blank' href='" + stdres + "' title='" + text + "'><img class='instagram-image' src='" + lores + "'' /><\/a><div class='imgdata'>" + username + " <img src='images/heart.png'/> " + likes + "<span> "+ data.data[i].tags[0] +" "+ data.data[i].tags[1]+" <\/span><\/div><br/><span class='lat'>"+ lat+"<\/span><span class='long'> "+longi +"<\/span><\/div>");
-                                                        
-                                                                
-                                                        }
+
+
+                            getInstagram($.mynamespace.myQuery);
+                            getTweets($.mynamespace.myQuery);
+                            dropMarker(51.553632, - 0.072678);
+
+                            $('#query').bind('keypress', function (e) {
+                                if (e.keyCode == 13) {
+                                    var query = $("#query").val();
+                                    getInstagram(query); //keypress event listener so that search is fired when 'enter' is pressed
+                                    getTweets(query);
+                                }
+                            });
+
+
+                        });
+
+                        function navHandler() {
+                            $.mynamespace.url = $("#cboxLoadedContent").find("img").attr("src");
+                            //      alert($("#cboxLoadedContent").find("img").attr("src"));
+                            var toReplace = '_7';
+
+                            var newUrl = $.mynamespace.url.replace(toReplace, '_6');
+                            var x = $("img[src$='" + newUrl + "']");
+
+                            getTweets($(x).parent().parent().find(".imgdata").find("span").text());
+                            var lat = parseFloat($(x).parent().parent().find(".lat").text());
+                            var longi = parseFloat($(x).parent().parent().find(".long").text())
+                            dropMarker(lat, longi);
                         }
-                    }
 
-                ).done(function () {
-                                         initfx();
-                                         $(".instagram-image").click(function() {  
-                                                getTweets($(this).parent().parent().find(".imgdata").find("span").text());
-                                                
-                                                
-    });
-                                
+                        function getInstagram(query) {
+
+                            $.mynamespace = {
+                                myQuery: query,
+                                url: null
+                            };
+                            $("#instagram").empty();
+                            $.ajax({
+                                type: "GET",
+                                dataType: "jsonp",
+                                cache: false,
+                                url: "https://api.instagram.com/v1/tags/" + query + "/media/recent?client_id=62b5810ccf6e4b2c9c9665bf5c7ed960&access_token=8465691.62b5810.767b552afd3d40f993846ac0b58b05f5",
+                                success: function (data) {
+                                    if (data.data.length == 0) {
+                                        $("#results").empty();
+                                        $("#results").append("Oops! There were no recent results for '" + query + "', please try a different query");
+                                    } else if (data.data.length > 0) {
+                                        $("#results").empty();
+                                        $("#results").append("Recent instagram images about '" + query + "'")
+                                    }
+                                    for (var i = 0; i < data.data.length; i++) {
+                                        if (data.data[i].caption != null) {
+                                            var text = data.data[i].caption.text;
+                                            var username = data.data[i].caption.from.username
+                                        };
+                                        if (data.data[i].images != null) {
+                                            var stdres = data.data[i].images.standard_resolution.url;
+                                            var lores = data.data[i].images.low_resolution.url
+                                        };
+                                        if (data.data[i].likes != null) {
+                                            var likes = data.data[i].likes.count
+                                        };
+                                        if (data.data[i].location != null && data.data[i].location != "undefined") {
+                                            var lat = data.data[i].location.latitude;
+                                            var longi = data.data[i].location.longitude;
+                                            //      var location = lat+", "+longi;
+                                        };
+                                        $("#instagram").append("<div class='instagram-placeholder'><a class='instalink' target='_blank' href='" + stdres + "' title='" + text + "'><img class='instagram-image' src='" + lores + "'' /><\/a><div class='imgdata'>" + username + " <img src='images/heart.png'/> " + likes + "<span> " + data.data[i].tags[0] + " " + data.data[i].tags[1] + " <\/span><\/div><br/><span class='lat'>" + lat + "<\/span><span class='long'> " + longi + "<\/span><\/div>");
+
+
+                                    }
+                                }
+                            }
+
+                            ).done(function () {
+                                initfx();
+                                $(".instagram-image").click(function () {
+                                    getTweets($(this).parent().parent().find(".imgdata").find("span").text());
+
+
                                 });
-                        
-                                };
-                                 
-                                 
-                                
-                                 
-        
-        
-            function initfx() {
-                        
-                $('.instalink').colorbox({
-                  //  fixedNavigation: false
-                                  rel:'.instalink',
-                                  onComplete:function(){ navHandler();}
-                });
-                                
-                $(".instagram-image").css("opacity", "0.5");
-                $(".instagram-placeholder").hover(function () {
 
-                    $(this).find("div").fadeTo(500, "1");
-                    $(this).find("img").fadeTo(500, "1");
+                            });
 
-                });
-                $(".instagram-placeholder").mouseout(function () {
-                    $(this).find("div").fadeTo(500, "0");
-                    $(this).find("img").fadeTo(500, "0.5");
-
-                });
+                        };
 
 
-            }
-                        
+
+
+
+
+                        function initfx() {
+
+                            $('.instalink').colorbox({
+                                //  fixedNavigation: false
+                                rel: '.instalink',
+                                onComplete: function () {
+                                    navHandler();
+                                }
+                            });
+
+                            $(".instagram-image").css("opacity", "0.5");
+                            $(".instagram-placeholder").hover(function () {
+
+                                $(this).find("div").fadeTo(500, "1");
+                                $(this).find("img").fadeTo(500, "1");
+
+                            });
+                            $(".instagram-placeholder").mouseout(function () {
+                                $(this).find("div").fadeTo(500, "0");
+                                $(this).find("img").fadeTo(500, "0.5");
+
+                            });
+
+
+                        }
+                    </script>
+                </head>
                 
+                <body>
+                    <div class="row">
+                        <div class="eight columns">
+                            <!-- Grid Example -->
+                            <div class="row" id="instawrap">
+                                <h1>
+                                    <a href="#"><img src="images/logo.png" alt="instagram logo"> Fiddle 2.0</a>
+                                </h1>
+                                <form id="searchBox" name="searchBox">
+                                    <input tabindex="1" type="text" id="query" name="query" value="" placeholder="search (default 'olympics')">
+                                    <span id="submit">
+                                        <img src="images/toolbar_find.png" alt="search icon">
+                                    </span>
+                                    <br>
+                                    <input tabindex="2" type="text" id="hidden" value="">
+                                    <br>
+                                </form>
+                                <h3 id='results'></h3>
+                                <div id="instagram">Loading.</div>
+                                <script type="text/javascript">
+                                    $("#submit").click(function () {
 
-    </script>
-  </head>
-  <body>
-    <!-- <div class="row">
-    <div class="twelve columns">
-     <h2>Welcome to Foundation</h2>
-      <p>This is version <strong>3.0.7</strong> generated on August 07, 2012.</p>
-      <hr />
-    </div>
-  </div>-->
-    <div class="row">
-      <div class="eight columns">
-        <!-- Grid Example -->
-        <div class="row" id="instawrap">
-          <h1>
-            <a href="#"><img src="images/logo.png" alt="instagram logo"> Fiddle 2.0</a>
-          </h1>
-          <form id="searchBox" name="searchBox">
-            <input tabindex="1" type="text" id="query" name="query" value="" placeholder=
-            "search (default 'olympics')"> <span id="submit"><img src="images/toolbar_find.png"
-            alt="search icon"></span><br>
-            <input tabindex="2" type="text" id="hidden" value=""><br>
-          </form>
-          <h3 id='results'></h3>
-          <div id="instagram">
-            Loading.
-          </div><script type="text/javascript">
-                       
-                                        $("#submit").click(function () {
+                                        var query = $("#query").val();
+                                        getInstagram(query);
+                                        getTweets(query);
+                                    });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="row six columns" id="tweets">
+                            <div class="panel">
+                                <img src="images/twitter.png" alt="twitter logo">
+                                <span id="hash"></span>
+                                <!-- <button id='tweet-btn'>Retrieve Tweets</button>-->
+                                <div id='tweet-show'></div>
+                            </div>
+                            <div class="panel" id="gmaps">
+                                <img id="gmapslogo" src="images/gmaps.png" alt="google maps logo">
+                                <div id="map_canvas"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <script type="text/javascript">
+                        function dropMarker(lat, longi) {
 
-                                                var query = $("#query").val();
-                                                getInstagram(query);
-                                                getTweets(query);
-                                        });
-                                        
-                                                
-                
-                                        
-                                
-          </script>
-        </div>
-      </div>
-      <div class="row six columns" id="tweets">
-        <div class="panel">
-          <img src="images/twitter.png" alt="twitter logo"> <span id="hash"></span> 
-          <!--  <button id='tweet-btn'>Retrieve Tweets</button>-->
-          <div id='tweet-show'></div>
-        </div>
-        <div class="panel" id="gmaps">
-          <img id="gmapslogo" src="images/gmaps.png" alt="google maps logo">
-          <div id="map_canvas"></div>
-        </div>
-      </div>
-    </div><script type="text/javascript">
+                            if (isNaN(lat) && isNaN(longi)) {
+                                $("#map_canvas").empty();
+                                $("#map_canvas").append("No location found for this image");
+                                return;
+                            }
+
+                            $("#map_canvas").empty();
+
+                            var loc = new google.maps.LatLng(lat, longi);
+
+                            var myOptions = {
+                                zoom: 4,
+                                center: loc,
+                                mapTypeId: google.maps.MapTypeId.ROADMAP
+                            }
+
+                            var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+
+                            var marker = new google.maps.Marker({
+                                position: loc,
+                                animation: google.maps.Animation.EASE,
+                                map: map,
+                                title: 'Selected image was posted from here'
+
+                            });
 
 
-        function dropMarker(lat, longi){
-        
-        if(isNaN(lat)&&isNaN(longi)){$("#map_canvas").empty(); $("#map_canvas").append("No location found for this image"); return;}
-        
-        $("#map_canvas").empty();
-        
-         var loc = new google.maps.LatLng(lat, longi);
-         
-        //var centerCoord = new google.maps.LatLng(location);
-        var myOptions = {
-      zoom: 4,
-      center: loc,        
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-        
-        //$("#map_canvas").empty();
-        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
-        
-                var marker= new google.maps.Marker({
-        position: loc,
-        animation: google.maps.Animation.EASE,
-        map: map,
-        title: 'Selected image was shot here' 
-                
-    });
-        
-         
-        
-        }
 
-    </script><!-- Included JS Files (Uncompressed) -->
-    <!--
-  
-  <script src="javascripts/modernizr.foundation.js"></script>
+                        }
+                    </script>
+                    <!-- Included JS Files (Uncompressed) -->
+                    <!-- <script src="javascripts/modernizr.foundation.js"></script>
   
   <script src="javascripts/jquery.js"></script>
   
@@ -288,5 +292,6 @@
   <script src="javascripts/jquery.foundation.alerts.js"></script>
   
   -->
-  </body>
-</html>
+                </body>
+                
+                </html>
